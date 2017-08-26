@@ -60,6 +60,7 @@ func makeDbConn() (conn *sql.DB, err error) {
 	}
 
 	conn.SetMaxIdleConns(Config().DB.MaxIdle)
+	conn.SetConnMaxLifetime(time.Second * 14400)
 	err = conn.Ping()
 
 	return conn, err
